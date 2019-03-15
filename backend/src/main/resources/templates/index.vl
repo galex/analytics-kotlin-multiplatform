@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/static/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/main.css">
+    <meta charset="UTF-8">
+    <title>Analytics Frontend!</title>
+</head>
+
+<body>
+Hello, $name
+Test of some text to render some damn html
+</body>
+</html>
