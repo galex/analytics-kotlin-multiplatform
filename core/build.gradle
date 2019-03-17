@@ -3,18 +3,20 @@ version '0.0.1'
 
 buildscript {
     repositories {
-        mavenLocal()
         google()
-        jcenter()
+        mavenCentral()
+        mavenLocal()
         maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
+        jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:3.2.1" // if updated R not generated
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
+        classpath "com.squareup.sqldelight:gradle-plugin:$sql_delight_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -35,9 +37,17 @@ repositories {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-multiplatform'
+apply plugin: "org.jetbrains.kotlin.multiplatform"
+apply plugin: "com.squareup.sqldelight"
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'maven-publish'
+
+
+sqldelight {
+    AnalyticsDatabase {
+        packageName = "com.analytics.db"
+    }
+}
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all { task ->
     task.kotlinOptions.freeCompilerArgs += experimentalsEnabled
@@ -76,6 +86,7 @@ kotlin {
                 implementation "io.ktor:ktor-client-core:$ktor_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$kotlinx_coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$kotlinx_serialization_version"
+                implementation "com.squareup.sqldelight:runtime:$sql_delight_version"
             }
         }
         commonTest {
@@ -128,6 +139,7 @@ kotlin {
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$kotlinx_serialization_version"
                 implementation "io.ktor:ktor-client-json-native:$ktor_version"
                 implementation "io.ktor:ktor-client-ios:$ktor_version"
+                implementation "com.squareup.sqldelight:ios-driver:$sql_delight_version"
             }
         }
         iOSTest {
@@ -172,6 +184,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+
+    implementation "com.squareup.sqldelight:android-driver:$sql_delight_version"
 }
 
 task packForXCode(type: Sync) {

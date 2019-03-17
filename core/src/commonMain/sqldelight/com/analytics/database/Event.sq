@@ -1,0 +1,6 @@
+CREATE TABLE Events (
+    name TEXT NOT NULL,
+    screen TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    platform TEXT NOT NULL
+);
