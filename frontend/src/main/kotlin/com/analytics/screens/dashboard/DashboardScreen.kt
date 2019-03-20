@@ -25,7 +25,7 @@ class DashboardScreen : RComponent<RProps, RState>() {
 
     override fun RBuilder.render() {
 
-        mTypography("Dashboard Screen here!")
+        mTypography("Dashboard RScreen here!")
     }
 }
 

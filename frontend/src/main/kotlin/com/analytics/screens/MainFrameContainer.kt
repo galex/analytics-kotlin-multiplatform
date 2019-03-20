@@ -1,8 +1,9 @@
 package com.analytics.screens
 
 import com.analytics.screens.dashboard.dashboard
+import com.analytics.screens.event.events
 import com.analytics.screens.home.home
-import com.analytics.screens.util.Screen
+import com.analytics.screens.util.RScreen
 import com.ccfraser.muirwik.components.*
 import com.ccfraser.muirwik.components.list.mList
 import com.ccfraser.muirwik.components.list.mListItem
@@ -17,7 +18,7 @@ import styled.css
 import styled.styledDiv
 
 interface MainFrameState : RState {
-    var currentScreen: Screen
+    var currentRScreen: RScreen
 }
 
 class MainFrameContainer : RComponent<RProps, MainFrameState>() {
@@ -37,7 +38,7 @@ class MainFrameContainer : RComponent<RProps, MainFrameState>() {
     }
 
     override fun MainFrameState.init() {
-        currentScreen = Screen.HOME
+        currentRScreen = RScreen.HOME
     }
 
     override fun RBuilder.render() {
@@ -84,8 +85,9 @@ class MainFrameContainer : RComponent<RProps, MainFrameState>() {
                             backgroundColor = Color(currentTheme.palette.background.paper)
                         }
 
-                        mListItem("Home", iconName = "home", divider = false, onClick = { setState { currentScreen = Screen.HOME } })
-                        mListItem("Dashboard", iconName = "dashboard", divider = true, onClick = { setState { currentScreen = Screen.DASHBOARD } })
+                        mListItem("Home", iconName = "home", divider = false, onClick = { setState { currentRScreen = RScreen.HOME } })
+                        mListItem("Dashboard", iconName = "dashboard", divider = true, onClick = { setState { currentRScreen = RScreen.DASHBOARD } })
+                        mListItem("Events", iconName = "view_list", divider = true, onClick = { setState { currentRScreen = RScreen.EVENTS } })
                     }
                 }
 
@@ -112,9 +114,10 @@ class MainFrameContainer : RComponent<RProps, MainFrameState>() {
                         }
 
 
-                        when(state.currentScreen) {
-                            Screen.HOME -> home()
-                            Screen.DASHBOARD -> dashboard()
+                        when(state.currentRScreen) {
+                            RScreen.HOME -> home()
+                            RScreen.DASHBOARD -> dashboard()
+                            RScreen.EVENTS -> events()
                         }
                     }
                 }

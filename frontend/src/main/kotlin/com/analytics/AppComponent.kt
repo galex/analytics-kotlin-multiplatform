@@ -17,7 +17,7 @@ class AppComponent : RComponent<RProps, RState>() {
 
     init {
 
-        AnalyticsConfig.baseUrl = getBaseUrl()
+        AnalyticsConfig.setBaseUrl(getBaseUrl())
     }
 
     private var themeColor = "light"
