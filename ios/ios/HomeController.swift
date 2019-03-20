@@ -10,16 +10,13 @@ import UIKit
 import Analytics
 
 class FirstViewController: UIViewController {
-        
-    private let eventsHelper: EventsHelper = EventsHelper.init()
     
     override func viewDidAppear(_ animated: Bool) {
-        eventsHelper.enterScreen(screen: Screen.home)
+        EventsHelper().enterScreen(screen: Screen.home)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        eventsHelper.exitScreen(screen: Screen.home)
+        EventsHelper().exitScreen(screen: Screen.home)
     }
-
 }
 

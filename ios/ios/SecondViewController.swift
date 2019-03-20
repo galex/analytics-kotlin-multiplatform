@@ -11,15 +11,13 @@ import Analytics
 
 class SecondViewController: UIViewController {
 
-    private let eventsHelper: EventsHelper = EventsHelper.init()
+    private let eventsHelper: EventsHelper = EventsHelper()
     
     override func viewDidAppear(_ animated: Bool) {
-        eventsHelper.enterScreen(screen: Screen.dashboard)
+        EventsHelper().enterScreen(screen: Screen.dashboard)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        eventsHelper.exitScreen(screen: Screen.dashboard)
+        EventsHelper().exitScreen(screen: Screen.dashboard)
     }
-
 }
-

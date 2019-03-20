@@ -3,9 +3,8 @@ package com.analytics.core.helper
 import com.analytics.core.model.Event
 import com.analytics.core.model.Screen
 import com.analytics.core.model.ScreenAction
-import com.analytics.core.network.api.EventsAPI
-import com.analytics.core.util.currentTimeMillis
-import com.analytics.core.util.getSource
+import com.analytics.core.util.getCurrentTimeMillis
+import com.analytics.core.util.getPlatform
 
 /**
  * Main Event Helper functions
@@ -20,10 +19,17 @@ object EventsHelper {
     }
 
     fun enterScreen(screen: Screen) {
-        logEvent(Event(name = ScreenAction.ENTER.name, screen = screen, timestamp = currentTimeMillis(), platform = getSource()))
+        logEvent(Event(name = ScreenAction.ENTER.name,
+            screen = screen,
+            timestamp = getCurrentTimeMillis(),
+            platform = getPlatform())
+        )
     }
 
     fun exitScreen(screen: Screen) {
-        logEvent(Event(name = ScreenAction.EXIT.name, screen = screen, timestamp = currentTimeMillis(), platform = getSource()))
+        logEvent(Event(name = ScreenAction.EXIT.name,
+            screen = screen,
+            timestamp = getCurrentTimeMillis(),
+            platform = getPlatform()))
     }
 }

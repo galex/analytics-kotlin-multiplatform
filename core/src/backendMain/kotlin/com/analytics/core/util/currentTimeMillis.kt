@@ -1,3 +1,3 @@
 package com.analytics.core.util
 
-actual fun currentTimeMillis(): Long = System.currentTimeMillis()
+actual fun getCurrentTimeMillis(): Long = System.currentTimeMillis()

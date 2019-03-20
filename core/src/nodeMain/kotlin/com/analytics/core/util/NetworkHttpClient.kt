@@ -15,4 +15,6 @@ actual val networkHttpClient: HttpClient
         }
     }
 
-actual fun currentTimeMillis(): Long = Date().getTime().toLong()
+actual fun getCurrentTimeMillis(): Long {
+    return Date().getTime().toLong()
+}

@@ -19,12 +19,10 @@ import styled.css
 class HomeScreen : RComponent<RProps, RState>() {
 
     override fun componentDidMount() {
-        println("componentDidMount")
         EventsHelper.enterScreen(Screen.HOME)
     }
 
     override fun componentWillUnmount() {
-        println("componentWillUnmount")
         EventsHelper.exitScreen(Screen.HOME)
     }
 

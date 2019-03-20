@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        AnalyticsConfig.init()
-        .setBaseUrl(urlString: "http://10.0.0.3:8000")
+        AnalyticsConfig().setBaseUrl(urlString: "http://192.168.54.71:8000")
     
         
         return true
