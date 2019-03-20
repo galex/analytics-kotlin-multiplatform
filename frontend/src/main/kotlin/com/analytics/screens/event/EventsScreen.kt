@@ -4,8 +4,7 @@ import com.analytics.core.model.Event
 import com.analytics.core.network.api.EventsAPI
 import com.analytics.screens.home.HomeScreen
 import com.analytics.screens.util.getBaseUrl
-import com.ccfraser.muirwik.components.mPaper
-import com.ccfraser.muirwik.components.spacingUnits
+import com.ccfraser.muirwik.components.*
 import com.ccfraser.muirwik.components.table.*
 import kotlinx.css.Overflow
 import kotlinx.css.pct
@@ -21,6 +20,10 @@ class EventsScreen : RComponent<RProps, EventsScreen.EventsState>() {
     }
 
     override fun componentDidMount() {
+        refresh()
+    }
+
+    private fun refresh() {
         EventsAPI.getEvents(getBaseUrl()) {
             setState {
                 this.events = it.events
@@ -29,6 +32,8 @@ class EventsScreen : RComponent<RProps, EventsScreen.EventsState>() {
     }
 
     override fun RBuilder.render() {
+
+        mButton("Refresh", variant = MButtonVariant.contained, color = MColor.secondary, onClick = { refresh() })
 
         mPaper {
             css {
@@ -41,9 +46,9 @@ class EventsScreen : RComponent<RProps, EventsScreen.EventsState>() {
                 mTableHead {
                     mTableRow {
                         mTableCell { +"Name" }
-                        mTableCell(align = MTableCellAlign.center) { +"Screen" }
-                        mTableCell(align = MTableCellAlign.center) { +"Timestamp" }
-                        mTableCell(align = MTableCellAlign.center) { +"Platform" }
+                        mTableCell(align = MTableCellAlign.right) { +"Screen" }
+                        mTableCell(align = MTableCellAlign.right) { +"Platform" }
+                        mTableCell(align = MTableCellAlign.right) { +"Timestamp" }
                     }
                 }
                 mTableBody {
@@ -51,8 +56,8 @@ class EventsScreen : RComponent<RProps, EventsScreen.EventsState>() {
                         mTableRow(key = event.id) {
                             mTableCell { + event.name }
                             mTableCell(align = MTableCellAlign.right) { +event.screen.name }
-                            mTableCell(align = MTableCellAlign.right) { +event.timestamp.toString() }
                             mTableCell(align = MTableCellAlign.right) { +event.platform.name }
+                            mTableCell(align = MTableCellAlign.right) { +event.timestamp.toString() }
                         }
                     }
                 }

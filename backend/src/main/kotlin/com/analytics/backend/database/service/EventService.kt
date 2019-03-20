@@ -6,6 +6,7 @@ import com.analytics.core.model.Event
 import com.analytics.core.model.Platform
 import com.analytics.core.model.Screen
 import org.jetbrains.exposed.sql.ResultRow
+import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
 
@@ -13,9 +14,9 @@ object EventService {
 
     suspend fun findAll(): List<Event>? = dbQuery {
 
-        Events.selectAll().map {
-            toEvent(it)
-        }
+        Events.selectAll()
+            .orderBy(Events.timestamp to SortOrder.DESC)
+            .map { toEvent(it) }
     }
 
     suspend fun create(event: Event): Int? = dbQuery {

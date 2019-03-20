@@ -10,6 +10,6 @@ class TheApplication: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AnalyticsConfig.setBaseUrl("http://10.0.0.3:8000")
+        AnalyticsConfig.setBaseUrl("http://192.168.54.71:8000")
     }
 }
