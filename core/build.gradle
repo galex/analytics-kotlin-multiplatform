@@ -32,6 +32,7 @@ repositories {
     maven { url "https://kotlin.bintray.com/ktor" }
     maven { url "https://kotlin.bintray.com/kotlin/kotlinx" }
     maven { url "https://kotlin.bintray.com/kotlinx" }
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-js-wrappers' }
 }
 
 apply plugin: 'com.android.library'
@@ -101,6 +102,8 @@ kotlin {
                 implementation "io.ktor:ktor-client-json-js:$ktor_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:$kotlinx_coroutines_version"
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:$kotlinx_serialization_version"
+                implementation "org.jetbrains:kotlin-react:16.6.0-pre.70-kotlin-$kotlin_version"
+                implementation "org.jetbrains:kotlin-react-dom:16.6.0-pre.70-kotlin-$kotlin_version"
             }
         }
         nodeTest {
